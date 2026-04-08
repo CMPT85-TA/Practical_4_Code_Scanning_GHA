@@ -23,6 +23,10 @@ jobs:
       - name: Download Coverity Analysis
         if: steps.cache-coverity.outputs.cache-hit != 'true'
         run: |
+          if [ -z "$COVERITY_DOWNLOAD_URL" ]; then
+            echo "::error::COVERITY_DOWNLOAD_URL secret is not set. Add it under Settings > Secrets and variables > Actions."
+            exit 1
+          fi
           mkdir -p cov-analysis
           curl -sSL "$COVERITY_DOWNLOAD_URL" -o coverity.tgz
           tar -xzf coverity.tgz -C cov-analysis --strip-components=1
