@@ -5,7 +5,9 @@ Secure versions of patterns in `vuln_app.py` demonstrating safer alternatives.
 """
 import subprocess
 import hashlib
-import shlex
+
+
+ALLOWED_COMMANDS = {"echo", "ls", "cat"}
 
 
 def safe_eval(expr: str):
@@ -18,11 +20,13 @@ def safe_eval(expr: str):
         raise ValueError("Expression not allowed")
 
 
-def run_shell_command_safe(args):
-    """Run a command safely by passing a list of args and avoiding shell=True."""
-    if isinstance(args, str):
-        args = shlex.split(args)
-    subprocess.run(args, shell=False)
+def run_shell_command_safe(args: list) -> subprocess.CompletedProcess:
+    """Run a command safely. args must be a list; the executable must be in ALLOWED_COMMANDS."""
+    if not isinstance(args, list) or not args:
+        raise ValueError("args must be a non-empty list")
+    if args[0] not in ALLOWED_COMMANDS:
+        raise ValueError(f"Command '{args[0]}' is not permitted")
+    return subprocess.run(args, shell=False)
 
 
 def use_secure_hash(value: str) -> str:

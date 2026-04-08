@@ -24,7 +24,7 @@ def run_shell_command(cmd):
     Example vulnerability: command injection via uncontrolled input.
     """
     # Vulnerable: uses shell=True with an interpolated command string
-    subprocess.run(cmd, shell=True)
+    return subprocess.run(cmd, shell=True)
 
 
 def use_insecure_hash(value: str) -> str:
@@ -56,8 +56,8 @@ def print_demo_secrets():
     provide a simple runtime demonstration that these are present.
     """
     secrets = {
-        "DEMO_AWS_ACCESS_KEY_ID": DEMO_AWS_ACCESS_KEY_ID,
-        "DEMO_AWS_SECRET_ACCESS_KEY": DEMO_AWS_SECRET_ACCESS_KEY,
+        "DEMO_AZURE_CLIENT_ID": DEMO_AZURE_CLIENT_ID,
+        "DEMO_AZURE_CLIENT_SECRET": DEMO_AZURE_CLIENT_SECRET,
         "DEMO_GITHUB_TOKEN": DEMO_GITHUB_TOKEN,
     }
     for k, v in secrets.items():
