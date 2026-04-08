@@ -10,6 +10,10 @@ on:
 jobs:
   tests:
     runs-on: ubuntu-latest
+    env:
+      DEMO_AZURE_CLIENT_ID: ${{ secrets.DEMO_AZURE_CLIENT_ID }}
+      DEMO_AZURE_CLIENT_SECRET: ${{ secrets.DEMO_AZURE_CLIENT_SECRET }}
+      DEMO_GITHUB_TOKEN: ${{ secrets.DEMO_GITHUB_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4

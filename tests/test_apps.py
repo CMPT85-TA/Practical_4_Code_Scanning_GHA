@@ -41,3 +41,6 @@ def test_run_untrusted_code_evaluates():
 
 def test_print_demo_secrets_no_error():
     vuln_app.print_demo_secrets()
+
+def test_print_demo_secrets_secure_no_error():
+    secure_app.print_demo_secrets()

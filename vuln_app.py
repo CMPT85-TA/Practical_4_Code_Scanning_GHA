@@ -32,15 +32,6 @@ def use_insecure_hash(value: str) -> str:
     return hashlib.md5(value.encode()).hexdigest()
 
 
-if __name__ == "__main__":
-    # Simple demo (do NOT run with untrusted input)
-    print("MD5 of 'password':", use_insecure_hash("password"))
-    # Dangerous examples commented out to avoid accidental execution
-    # run_untrusted_code("__import__('os').system('echo hi')")
-    # run_shell_command("ls -la")
-
-
-
 # Not used demo Azure credentials (do not use in real environments)
 DEMO_AZURE_CLIENT_ID = "b78186dd-32ca-4dcb-8aba-c65f47cd0104"
 DEMO_AZURE_CLIENT_SECRET = "JAj8Q~uILxPmXZ5iMaOsFbJ.62Mtv_RzOOsepdbZ"
@@ -62,3 +53,12 @@ def print_demo_secrets():
     }
     for k, v in secrets.items():
         print(f"{k}: {v[:10]}... (demo)")
+
+
+if __name__ == "__main__":
+    # Simple demo (do NOT run with untrusted input)
+    print("MD5 of 'password':", use_insecure_hash("password"))
+    # Dangerous examples commented out to avoid accidental execution
+    # run_untrusted_code("__import__('os').system('echo hi')")
+    # run_shell_command("ls -la")
+    print_demo_secrets()
